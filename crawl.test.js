@@ -1,6 +1,31 @@
 import { test, expect } from '@jest/globals';
 
 import { normalizeUrl, getURLsFromHTML } from './crawl';
+import { sortPages } from './report';
+
+test('sortPages, empty pages', () => {
+    let pages = {};
+    const actual = sortPages(pages);
+    const expected = [];
+    expect(actual).toEqual(expected);
+})
+
+test('sortPages', () => {
+    let pages = {
+        'wagslane.dev/posts/no-one-does-devops': 2,
+        'wagslane.dev/posts/leave-scrum-to-rugby': 5,
+        'wagslane.dev/posts/managers-that-cant-code': 4,
+        'wagslane.dev/posts/kanban-vs-scrum': 4,
+    };
+    const actual = sortPages(pages);
+    const expected = [
+        ['wagslane.dev/posts/leave-scrum-to-rugby', 5],
+        ['wagslane.dev/posts/managers-that-cant-code', 4],
+        ['wagslane.dev/posts/kanban-vs-scrum', 4],
+        ['wagslane.dev/posts/no-one-does-devops', 2],
+    ];
+    expect(actual).toEqual(expected);
+})
 
 test('getURLsFromHTML, external link', () => {
     const htmlBody = `<html>

@@ -1,6 +1,7 @@
 import { argv } from 'node:process';
 
 import { crawlPage } from './crawl.js';
+import { printReport  } from './report.js';
 
 async function main() {
 
@@ -13,7 +14,7 @@ async function main() {
     const baseUrl = argv[2];
     console.log(`Web crawler is crawling towards '${baseUrl}' now...`);
     const pages = await crawlPage(baseUrl);
-    console.log(pages);
+    printReport(pages);
 }
 
 main();
