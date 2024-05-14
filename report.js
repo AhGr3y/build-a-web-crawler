@@ -1,6 +1,8 @@
 function printReport(pages) {
 
-    console.log("Generating report...");
+    console.log('==============');
+    console.log("Page Report");
+    console.log('==============');
 
     // get sorted pages
     const sortedPages = sortPages(pages);
@@ -19,7 +21,13 @@ function sortPages(pages) {
     // convert pages into array of objects
     let entries = Object.entries(pages);
     // sort entries in descending order by object value
-    let sortedEntries = entries.sort((a, b) => b[1] - a[1]);
+    let sortedEntries = entries.sort((a, b) => {
+        // sort alphabetically by key if value is the same
+        if (a[1] === b[1]) {
+            return a[0].localeCompare(b[0]);
+        }
+        return b[1] - a[1];
+    });
 
     return sortedEntries;
 }
