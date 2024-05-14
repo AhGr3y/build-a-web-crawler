@@ -1,1 +1,2 @@
-# Build A Web Crawler
+# A Web Crawler
+This program takes in a url of a website as input, and provides an overview of the number of internal links that the website has, which only has its scope limited to the domain of the website.
